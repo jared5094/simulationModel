@@ -1,0 +1,19 @@
+#subcomponent1 li {
+  margin-left: 0;
+}
+
+#subcomponent2 li {
+  margin-left: 100px;
+}
+
+#subcomponent3 li {
+  margin-left: 200px;
+}
+
+#userOptions {
+  padding 20px;
+}
+
+#model {
+  color: rgb(red, green, blue);
+}
