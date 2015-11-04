@@ -1,21 +1,28 @@
 /*
 array sorted randomly:
-display array1 from A-D.
-duplicate array randomly mixed:
-j = random number from 1-4.
-if !(array1.includes(j) )
-  push array1[j] to array2.
+  display array1 from A-D.
+  duplicate array randomly mixed:
+  j = random number from 1-4.
+  if !(array1.includes(j) )
+    push array1[j] to array2.
 
 
 print out html 4 times:
-var1 storing select tags and options and var2
-var2 storing select tag id
-loop prints var1 4 times, changing var2 each time.
-var2 = string + var3.
-var3 = number.
-each iteration, var3++, convert var3 to string, join to var2.
+  var1 storing select tags and options and var2
+  var2 storing select tag id
+  loop prints var1 4 times, changing var2 each time.
+  var2 = string + var3.
+  var3 = number.
+  each iteration, var3++, convert var3 to string, join to var2.
 
-event listener on each select tag.
+
+user chooses options
+user clicks submit
+get values for each select tag
+push values to array
+
+event listener on each select tag:
+var1 = select tag id.
 create array item from .val() on each select tag.
 
 user selects option in index.html:
@@ -34,7 +41,7 @@ var redLetters = [];
 //0 and 3. If redLetters doesn't contain random letter from redBets, push it to redLetters.
 function randomLetters() {
   var j = 0;
-  for (var i = 0; redLetters.length < redBets.length; i++) {
+  while (redLetters.length < redBets.length) {
     j = Math.floor(Math.random() * 4);
     if (redLetters.indexOf(redBets[j]) === -1) {
       redLetters.push(redBets[j]);
@@ -45,25 +52,39 @@ function randomLetters() {
 
 function generateTags() {
   //create variable storing select and option tags, including variable storing select tag ID.
-  var redOptionsID = "test";
+  var redOptionsID = "";
   var redOptionsHTML =
-  "<select " + "id='" + redOptionsID + "'>" +
-  "<option val='A'>A</option>" +
-  "<option val='B'>B</option>" +
-  "<option val='C'>C</option>" +
-  "<option val='D'>D</option>" +
+  "<select>" +
+    "<option val='A'>A</option>" +
+    "<option val='B'>B</option>" +
+    "<option val='C'>C</option>" +
+    "<option val='D'>D</option>" +
   "</select>";
 
-  //perform loop 4 times, Each time: append HTML for select and option tags, providing unique ID name
-  //for the select tag.
+  //loop: prepend select and option tags,
+  //create unique ID for each select tag and apply it.
   var redID = "red";
-  var j = 0;
-  for (var i = 0; i < 4; i++) {
+  var j = 3;
+  for (var i = 0; i < redBets.length; i++) {
+    $('#userBets').prepend(redOptionsHTML);
     redOptionsID = redID.concat(j.toString());
-    $('#userBets').append(redOptionsHTML);
-    j += 1;
+    $('#userBets').children('select').first().attr("id", redOptionsID);
+    j -= 1;
   }
 }
+
+
+
+// $('#userBets').children('input').on('click', function() {
+//   var userBets = [];
+
+
+//   for (i = 0; i < userBets.length; i++) {
+//     userBets.push($(selectTagID).val() );
+//   }
+// })
+
+
 
 randomLetters();
 generateTags();
