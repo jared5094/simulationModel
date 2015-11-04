@@ -35,7 +35,9 @@ modify color scheme based on point score
 
 
 var redBets = ["A", "B", "C", "D"];
+var redIDTags = [];
 var redLetters = [];
+var userBets = [];
 
 //perform loop until redLetters is same size as redBets. Each iteration: get random number between
 //0 and 3. If redLetters doesn't contain random letter from redBets, push it to redLetters.
@@ -64,32 +66,29 @@ function generateTags() {
   //loop: prepend select and option tags,
   //create unique ID for each select tag and apply it.
   var redID = "red";
-  var j = 3;
+  var j = 0;
   for (var i = 0; i < redBets.length; i++) {
-    $('#userBets').prepend(redOptionsHTML);
+    $('#userBets').append(redOptionsHTML);
     redOptionsID = redID.concat(j.toString());
-    $('#userBets').children('select').first().attr("id", redOptionsID);
-    j -= 1;
+    redIDTags.push(redOptionsID);
+    $('#userBets').children('select').last().attr("id", redOptionsID);
+    j += 1;
   }
+  $("#userBets").append("<input type='submit'>")
 }
 
-
-
-// $('#userBets').children('input').on('click', function() {
-//   var userBets = [];
-
-
-//   for (i = 0; i < userBets.length; i++) {
-//     userBets.push($(selectTagID).val() );
-//   }
-// })
+$('#userBets').on('submit', function(event) {
+  event.preventDefault();
+  for (i = 0; i < redBets.length; i++) {
+    userBets.push($('#' + redIDTags[i]).val() );
+  }
+  console.log(userBets);
+});
 
 
 
 randomLetters();
 generateTags();
-
-
 
 
 
